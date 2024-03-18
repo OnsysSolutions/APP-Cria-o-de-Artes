@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELA DE PARAMETIZAÇÃO</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .painel-invisivel {
+            display: none;
+        }
+
+        #progress-container {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 30px;
+            background-color: #4CAF50;
+            transition: width 5s;
+            position: relative;
+        }
+
+        #progress-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="titulo-centralizado">TELA DE PARAMETIZAÇÃO</h1>
+        <h2 class="titulo-centralizado">CRIAÇÃO DE ARTES COM AUXÍLIO DA AI - Inteligência Artificial</h2>
+    </header>
+    <main>
+        <section class="dados-arte">
+            <h3 class="titulo-centralizado">DESCREVA / DETALHES DA ARTE A SER CRIADA ?</h3>
+            <br>
+            <form action="#" id="form-criacao-arte">
+                <label for="descricao">Descreva em detalhes a Arte a ser criada com seu tamanho ?</label>
+                <br>
+                <textarea id="descricao" name="descricao" rows="5" cols="100"></textarea>
+                <br>
+                <input type="submit" value=" PROCESSAR A CRIAÇÃO DA ARTE " id="btn-processar">
+            </form>
+        </section>
+        <section class="visualizacao">
+            <div class="visualizar-arte painel-invisivel" id="painel-arte">
+                <h3 class="titulo-centralizado">VISUALIZAR/CRIAÇÃO</h3>
+                <img src="criando.png" alt="Imagem da arte" class="imagem-arte" id="imagem-arte">
+                <section class="informacoes">
+                    <div class="data-cliente">
+                        <h4>DATA/CRIAÇÃO: 19/03/2024</h4>
+                        <h4>CLIENTE: FULANO DE TAL</h4>
+                    </div>
+                    <div class="dimensoes-valor">
+                        <h4>TAMANHO: 1,50 M ALTURA x 3,00M LARGURA</h4>
+                        <h4>VALOR m²: R$ 150,00</h4>
+                    </div>
+                    <div class="valor-total">
+                        <h4>VALOR TOTAL: R$ 999,99</h4>
+                        <br>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p class="titulo-centralizado">&copy; 2024 MASSARI COMUNICAÇÃO VISUAL.</p>
+        <p class="titulo-centralizado">ARTE CRIADA COM USO DA AI (Inteligência Artificial) DA MASSARI COMUNICAÇÃO VISUAL</p>
+    </footer>
+
+    <div id="progress-container">
+        <div id="progress-bar">
+            <span id="progress-message">Aguarde! - Processando a criação da arte com auxílio da Inteligência Artificial...</span>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('descricao').addEventListener('input', function() {
+            var painelArte = document.getElementById('painel-arte');
+            var descricao = document.getElementById('descricao').value.trim(); // Obtém o valor da caixa de texto e remove os espaços em branco
+
+            // Verifica se a caixa de texto não está vazia
+            if (descricao !== '') {
+                // Exibe o painel de arte
+                painelArte.style.display = 'block';
+            } else {
+                // Esconde o painel de arte se a caixa de texto estiver vazia
+                painelArte.style.display = 'none';
+            }
+        });
+
+        document.getElementById('form-criacao-arte').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            var progressBar = document.getElementById('progress-bar');
+            var painelArte = document.getElementById('painel-arte');
+            var imagemArte = document.getElementById('imagem-arte');
+
+            // Exibe a barra de progresso
+            progressBar.style.width = '100%';
+
+            // Simula uma contagem de 0% a 100% em 5 segundos
+            setTimeout(function() {
+                // Esconde a barra de progresso
+                progressBar.style.width = '0%';
+
+                // Troca a imagem
+                imagemArte.src = 'criacao01.jpg';
+
+                // Exibe o painel de arte
+                painelArte.style.display = 'block';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
